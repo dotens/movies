@@ -12,4 +12,4 @@ public class HomeController {
 		return "index";
 	}
 }
-//gg
+//permission
