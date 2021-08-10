@@ -12,6 +12,7 @@
 	    <p>
 	    <a href="movie/list">검색창</a><br/>
 	    <a href="movie/list">검색창</a><br/>
+	    <a href="member/login">로그인</a><br/>
 	    
 	   
 	    </p>
