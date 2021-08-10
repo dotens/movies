@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<typeAliases>
+	<typeAlias alias="Shop" type="lhj.shop.domain.Shop"/>
+	<typeAlias alias="Movies" type="lhj.shop.domain.Movies"/>
+</typeAliases>
+
+<!-- 
+<mappers>
+	 <mapper resource="lhj/shop/mapper/shop.xml"/>
+</mappers>
+ -->
+</configuration>
