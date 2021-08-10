@@ -9,11 +9,13 @@ import lhj.shop.domain.Shop;
 
 public interface MovieMapper {
 	public void insertRelate(Relate relate);
+	List<Relate> relate();
 	public void insertM(Movie movie);
 	public void insertt(Movies movies);
 	List<Movies> list();
 	List<Movie> listm();
 	public void delete();
 	public void deletem();
+	public void deleteRelate();
 }
 

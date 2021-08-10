@@ -9,11 +9,20 @@
 <insert id="insertt"  parameterType="Movies">
 	insert into movies values(#{mname},#{url},#{img})
 </insert>
+<insert id="insertRelate">
+	insert into relate values(#{rtitle},#{rimg})
+</insert>
+<select id="relate" resultType="lhj.shop.domain.Relate">
+	select * from relate
+</select>
 <select id="list" resultType="Movies">
 	    select * from Movies
 </select>
 <delete id="delete">
  	delete from Movies
+</delete>
+<delete id="deleteRelate">
+ 	delete from Relate
 </delete>
 <select id="listm" resultType="lhj.shop.domain.Movie">
 	    select * from Movie

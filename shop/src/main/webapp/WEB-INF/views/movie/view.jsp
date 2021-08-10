@@ -41,12 +41,30 @@
 			</c:if>
 			<c:forEach items="${list}" var="list">
 				<tr>
-				<td align='center'>${list.mname}</td>
+				<td align='center'>${list.list.mname}</td>
 				<td>${list.summary}</td>
 				<td>${list.starpoint}</td>
 				<td>${list.review}</td>
 				<td>${list.URL}</td>
 				<td><img src=${list.IMG}></td>
+				
+				</tr>
+
+			<table border='2' cellpadding='7' cellspacing='2' width='50%'>
+			<tr>
+				<th>타이틀</th>
+				<th>이미지</th>
+			</tr>
+			</c:forEach>
+				<c:if test="${empty Rlist}">
+				<tr>
+					<td align='center' colspan="2">데이터가 하나도 없음</td>
+				</tr>
+			</c:if>
+			<c:forEach items="${Rlist}" var="Rlist">
+				<tr>
+				<td align='center'>${Rlist.rtitle}</td>
+				<td><img src=${Rlist.rimg}></td>
 				
 				</tr>
 			</c:forEach>

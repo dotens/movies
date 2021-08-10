@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import lhj.shop.domain.Movie;
 import lhj.shop.domain.Movies;
+import lhj.shop.domain.Relate;
 import lhj.shop.mapper.MovieMapper;
 import lombok.AllArgsConstructor;
 
@@ -110,11 +111,16 @@ public class MovieServiceimpl implements MovieService {
 		 
 	}
 
+
 	@Override
 	public void delete() {
 			mapper.delete();
 		
 	}
+	public void deleteRelate() {
+		mapper.deleteRelate();
+	
+}
 	@Override
 	public void rein(String url) {
 		String path = "C:\\sprin\\upload\\tmp\\movie\\";
@@ -131,10 +137,12 @@ public class MovieServiceimpl implements MovieService {
 		for(Element e : e2.select("li"))
 		{
 			//String img = e.select("img").attr("src");
-			String eName = e.select("a").text();
-			String eImgt = e.select("img").attr("src");
-			String eImg = eImgt.trim();
-			System.out.println("ENAME: " + eName + ", IMG: " + eImg);
+			String rtitle = e.select("a").text();
+			String imgt = e.select("img").attr("src");
+			String rimg = imgt.trim();
+			System.out.println("ENAME: " + rtitle + ", IMG: " + rimg);
+			Relate relate = new Relate(rtitle,rimg);
+			mapper.insertRelate(relate);
 		}
 		
 		String mname = elements.select("h3.h_movie").first().text();	
@@ -150,7 +158,7 @@ public class MovieServiceimpl implements MovieService {
 		System.out.println("urll"+urll);
 		System.out.println("img"+img);*/
 		
-		
+
 		Movie movie = new Movie(mname,summry,starpoint,review,urll,img);
 		mapper.insertM(movie);	
 	}
@@ -195,7 +203,10 @@ String path = "C:\\sprin\\upload\\tmp\\movie\\";
 		
 	}
 	
-
+	public List<Relate> relate() {
+		return mapper.relate();
+		 
+	}
 	
 	}
 	/*
