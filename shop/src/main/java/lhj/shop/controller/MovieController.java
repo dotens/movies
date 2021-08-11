@@ -81,7 +81,6 @@ public class MovieController {
 		
 		list3.add(list);
 		list3.add(relate);
-		ModelAndView mvRelate = new ModelAndView("movie/view","Rlist",relate);
 		ModelAndView mv = new ModelAndView("movie/view","a",list3);
 		return mv;
 	}

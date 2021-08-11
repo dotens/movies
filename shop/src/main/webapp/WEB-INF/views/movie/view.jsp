@@ -62,10 +62,10 @@
 					<td align='center' colspan="2">데이터가 하나도 없음</td>
 				</tr>
 			</c:if>
-			<c:forEach items="${a[1]}" var="a1">
+			<c:forEach items="${a[1]}" var="relate">
 				<tr>
-				<td align='center'>${a1.rtitle}</td>
-				<td align='center'><img src=${a1.rimg}></td>
+				<td align='center'>${relate.rtitle}</td>
+				<td align='center'><img src=${relate.rimg}></td>
 				</tr>
 			</c:forEach>
 
