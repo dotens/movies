@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 public class Relate {
 	private String rtitle;
 	private String rimg;
+	private String rurl;
 
 }

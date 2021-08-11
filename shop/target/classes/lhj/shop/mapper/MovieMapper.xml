@@ -10,7 +10,7 @@
 	insert into movies values(#{mname},#{url},#{img})
 </insert>
 <insert id="insertRelate">
-	insert into relate values(#{rtitle},#{rimg})
+	insert into relate values(#{rtitle},#{rimg}, #{rurl})
 </insert>
 <select id="relate" resultType="lhj.shop.domain.Relate">
 	select * from relate

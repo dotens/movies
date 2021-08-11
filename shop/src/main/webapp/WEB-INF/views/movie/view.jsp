@@ -21,10 +21,10 @@
 	<body style="text-align:center">
 		<center>
 			<h1>
-				되려무나
+				영화 상세정보
 			</h1>
-			<a href='.../list'>어디로가려나</a><br/>
-			<table border='1' cellpadding='7' cellspacing='2' width='50%'>
+			<a href='list'>메인으로</a><br/>
+		<table border='1' cellpadding='7' cellspacing='2' width='50%'>
 			<tr>
 			<th>이름</th>
 			<th>줄거리</th>
@@ -50,7 +50,12 @@
 				
 				</tr>
 			</c:forEach>
-			<table border='2' cellpadding='7' cellspacing='2' width='50%'>
+			
+		</table>
+			<h1>
+				관련 영화 추천
+			</h1>
+		<table border='2' cellpadding='7' cellspacing='2' width='50%'>
 			<tr>
 				<th>타이틀</th>
 				<th>이미지</th>
@@ -59,17 +64,17 @@
 			
 			<c:if test="${empty a[1]}">
 				<tr>
-					<td align='center' colspan="2">데이터가 하나도 없음</td>
+					<td align='center' colspan="2">검색된 연관영화가 없습니다</td>
 				</tr>
 			</c:if>
 			<c:forEach items="${a[1]}" var="relate">
 				<tr>
-				<td align='center'>${relate.rtitle}</td>
+				<td align='center'><a href ="essential?url=${relate.rurl}">${relate.rtitle}</a></td>
 				<td align='center'><img src=${relate.rimg}></td>
 				</tr>
 			</c:forEach>
 
-			</table>
+		</table>
 			
 
 		</center>

@@ -139,9 +139,11 @@ public class MovieServiceimpl implements MovieService {
 			//String img = e.select("img").attr("src");
 			String rtitle = e.select("a").text();
 			String imgt = e.select("img").attr("src");
+			String r = e.select("a").attr("href");
 			String rimg = imgt.trim();
-			System.out.println("ENAME: " + rtitle + ", IMG: " + rimg);
-			Relate relate = new Relate(rtitle,rimg);
+			String rurl = ("https://movie.naver.com"+r);
+			System.out.println("RURL: " + rurl);
+			Relate relate = new Relate(rtitle,rimg,rurl);
 			mapper.insertRelate(relate);
 		}
 		
