@@ -146,9 +146,11 @@ public class MovieServiceimpl implements MovieService {
 			Relate relate = new Relate(rtitle,rimg,rurl);
 			mapper.insertRelate(relate);
 		}
+		Elements e3 = doc.select("div.story_area"); //줄거리가 시작되는부분만 따로지정해서 뽑았음
+		String sum = e3.select("p.con_tx").text();
 		
 		String mname = elements.select("h3.h_movie").first().text();	
-		String summry = elements.select("p.con_tx").text();
+		//String summry = elements.select("p.con_tx").text();
 		String starpoint = "9";
 		String review = "asd";
 		String urll = elements.select("div.end_btn_area>ul>li>a").attr("href");
@@ -161,7 +163,7 @@ public class MovieServiceimpl implements MovieService {
 		System.out.println("img"+img);*/
 		
 
-		Movie movie = new Movie(mname,summry,starpoint,review,urll,img);
+		Movie movie = new Movie(mname,sum,starpoint,review,urll,img);
 		mapper.insertM(movie);	
 	}
 	@Override

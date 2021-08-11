@@ -45,7 +45,7 @@
 				<td>${list.summary}</td>
 				<td>${list.starpoint}</td>
 				<td>${list.review}</td>
-				<td>${list.URL}</td>
+				<td><a href =${list.URL}>예매사이트로</a></td>
 				<td><img src=${list.IMG}></td>
 				
 				</tr>
