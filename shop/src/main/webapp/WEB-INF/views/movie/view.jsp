@@ -34,14 +34,14 @@
 			<th>포스터</th>
 			</tr>
 			
-			<c:if test="${empty list}">
+			<c:if test="${empty a[0]}">
 				<tr>
 					<td align='center' colspan="5">데이터가 하나도 없음</td>
 				</tr>
 			</c:if>
-			<c:forEach items="${list}" var="list">
+			 <c:forEach items="${a[0]}" var="list" begin="0" end="1">
 				<tr>
-				<td align='center'>${list.list.mname}</td>
+				<td align='center'>${list.mname}</td>
 				<td>${list.summary}</td>
 				<td>${list.starpoint}</td>
 				<td>${list.review}</td>
@@ -49,26 +49,29 @@
 				<td><img src=${list.IMG}></td>
 				
 				</tr>
-
+			</c:forEach>
 			<table border='2' cellpadding='7' cellspacing='2' width='50%'>
 			<tr>
 				<th>타이틀</th>
 				<th>이미지</th>
 			</tr>
-			</c:forEach>
-				<c:if test="${empty Rlist}">
+
+			
+			<c:if test="${empty a[1]}">
 				<tr>
 					<td align='center' colspan="2">데이터가 하나도 없음</td>
 				</tr>
 			</c:if>
-			<c:forEach items="${Rlist}" var="Rlist">
+			<c:forEach items="${a[1]}" var="a1">
 				<tr>
-				<td align='center'>${Rlist.rtitle}</td>
-				<td><img src=${Rlist.rimg}></td>
-				
+				<td align='center'>${a1.rtitle}</td>
+				<td align='center'><img src=${a1.rimg}></td>
 				</tr>
 			</c:forEach>
+
 			</table>
+			
+
 		</center>
 	</body>
 </html>

@@ -24,6 +24,8 @@ import lombok.extern.log4j.Log4j;
 public class MovieController {
 	@Setter(onMethod_ = @Autowired)
 	private MovieServiceimpl service;
+	
+	
 	@RequestMapping("list")
 	public String list() {
 		return"movie/list";
@@ -73,13 +75,14 @@ public class MovieController {
 		
 		List<Movie>list =service.listm(); //선택한 영화에대한 상세정보 DB가 담긴 modelandview
 		List<Relate> relate = service.relate(); //선택한 영화에 대한 연관영화목록들 DB가 담긴 modelandview
-
+		
+		
 		ArrayList<Object> list3 = new ArrayList<Object>();
+		
 		list3.add(list);
 		list3.add(relate);
-		System.out.println("LIST3:" + list3.get(0));
-		//ModelAndView mvRelate = new ModelAndView("movie/view","Rlist",relate);
-		ModelAndView mv = new ModelAndView("movie/view","list",list3);
+		ModelAndView mvRelate = new ModelAndView("movie/view","Rlist",relate);
+		ModelAndView mv = new ModelAndView("movie/view","a",list3);
 		return mv;
 	}
 	
