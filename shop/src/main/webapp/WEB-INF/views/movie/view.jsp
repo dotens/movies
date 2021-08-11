@@ -70,7 +70,7 @@
 			<c:forEach items="${a[1]}" var="relate">
 				<tr>
 				<td align='center'><a href ="essential?url=${relate.rurl}">${relate.rtitle}</a></td>
-				<td align='center'><img src=${relate.rimg}></td>
+				<td align='center'><a href ="essential?url=${relate.rurl}"><img src=${relate.rimg}></td>
 				</tr>
 			</c:forEach>
 
