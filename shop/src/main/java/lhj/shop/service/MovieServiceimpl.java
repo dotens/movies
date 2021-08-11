@@ -31,7 +31,7 @@ public class MovieServiceimpl implements MovieService {
 	private MovieMapper mapper;
 	
 	@Override
-	 public void insertt(String url1) {
+	 public void insertt(String url1) { //네이버검색결과
 		String path = "C:\\sprin\\upload\\tmp\\movie\\";
 		
 		Document doc = null;
@@ -68,8 +68,8 @@ public class MovieServiceimpl implements MovieService {
 			}	
 	}
 	@Override
-	public void insertd(String url1) {
-		System.out.println("insertd: " + url1);
+	public void insertd(String url1) { //cgv 검색결과
+		//System.out.println("insertd: " + url1);
 		String path = "C:\\sprin\\upload\\tmp\\movie\\";
 		
 		Document doc = null;
@@ -78,10 +78,40 @@ public class MovieServiceimpl implements MovieService {
 		}catch(IOException ie) {
 			System.out.println("insertd io발생 " +ie);
 		}
-		Elements elements = doc.select("ul");	
-		for(Element e : elements.select("li")) {	
+
+		
+		Elements e1 = doc.select("div.sect-chart>ul>li");
+		
+		for (Element e2 : e1)
+		{
+			String curlt = e2.select("div.box-contents>a").attr("href").trim();
+			String cname = e2.select("div.box-contents>a>strong.title").text();
+			String cimgurl = e2.select("div.box-image>a>span>img").attr("src").trim();
+			//첫 스페이스에서 이름 자르기 필요
+			//System.out.println("insertd url2"+url2);
+			String curl = ("http://www.cgv.co.kr"+curlt);
+			String filename = curlt;
+			HttpURLConnection conn = null;
+			URL imgUrl;
+			try {
+				imgUrl = new URL(curlt);
+				conn=(HttpURLConnection)imgUrl.openConnection();
+				BufferedImage buffImg = ImageIO.read(conn.getInputStream());
+				FileOutputStream file = new FileOutputStream(path+filename);
+				ImageIO.write(buffImg,"gif",file);
+			}catch(IOException ie) {
+			}
+			Movies movies = new Movies(cname,curl,cimgurl);
+			System.out.println("CNAME: "+cname+", CURL:"+curl+", CIMGURL: "+cimgurl);
+			
+			mapper.insertt(movies);
+		}
+		
+		/*Elements elements = doc.select("ul");
+		for(Element e : elements.select("li")) 
+		{	
 			String img = e.select("span.thumb-image").attr("src");
-			System.out.println("insertd 이미지는?"+img);
+			//System.out.println("insertd 이미지는?"+img);
 			String filename =img.trim();
 			HttpURLConnection conn = null;
 			URL imgUrl;
@@ -97,13 +127,14 @@ public class MovieServiceimpl implements MovieService {
 			String mname = e.select("strong.title").text();
 			//첫 스페이스에서 이름 자르기 필요
 			String url2 = e.select("div.box-image>a").attr("href");
-			System.out.println("insertd url2"+url2);
+			//System.out.println("insertd url2"+url2);
 			String url = ("http://www.cgv.co.kr"+url2);
 			
 			Movies movies = new Movies(mname,url,filename);
+			
 			mapper.insertt(movies);
 	
-		}
+		}*/
 	}
 	@Override
 	public List<Movies> list() {
@@ -122,7 +153,7 @@ public class MovieServiceimpl implements MovieService {
 	
 }
 	@Override
-	public void rein(String url) {
+	public void rein(String url) { //네이버 검색 상세
 		String path = "C:\\sprin\\upload\\tmp\\movie\\";
 		
 		Document doc = null;
@@ -167,7 +198,7 @@ public class MovieServiceimpl implements MovieService {
 		mapper.insertM(movie);	
 	}
 	@Override
-	public void reinc(String url) {
+	public void reinc(String url) { //cgv 검색 상세
 String path = "C:\\sprin\\upload\\tmp\\movie\\";
 		
 		Document doc = null;
