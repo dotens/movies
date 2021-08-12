@@ -4,9 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="lhj.shop.mapper.MemberMapper">
   	<insert id="signUp" parameterType="Member">
-  	  insert into Member values(#{id}, #{name}, #{email}, #{phone}, #{pwd})
+  	  insert into member values(#{id}, #{name}, #{email}, #{phone}, #{pwd})
   	</insert>
-	<select id="getMember" parameterType="String">
-	  select * from Member id=#{id}
+	<select id="getMember" parameterType="String" resultType="Member">
+	  select * from member where id=#{id}
 	</select>
+	<update id="setPwd" parameterType="String">
+	  update member set pwd=#{pwd} where id=#{id}
+	</update>
   </mapper>

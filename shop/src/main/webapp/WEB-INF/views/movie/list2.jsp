@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<font style="color:green">${member.name}</font>님 환영합니다.
+<a href="../member/logout">로그아웃</a>
 <!DOCTYPE html>
 <html>
 	<head>
