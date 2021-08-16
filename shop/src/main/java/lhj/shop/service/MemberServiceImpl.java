@@ -75,4 +75,31 @@ public class MemberServiceImpl implements MemberService {
 	public void setPwdS(String pwd, String id) {
 		mapper.setPwd(pwd, id);
 	}
+	@Override
+	public void updateS(Member member) {
+		mapper.update(member);
+	}
+	@Override
+	public void deleteS(String id) {
+		mapper.delete(id);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@ purge recyclebin;
 
 create table wishList(
     id varchar2(200) references member(id),
-    wishList varchar2(200)
+    wlist varchar2(200)
 );
 
 select constraint_name, constraint_type from user_constraints where table_name='wishList';

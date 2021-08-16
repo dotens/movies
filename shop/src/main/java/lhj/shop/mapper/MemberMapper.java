@@ -8,4 +8,6 @@ public interface MemberMapper {
 	void signUp(Member member);
 	Member getMember(String id);
 	void setPwd(@Param("pwd") String pwd, @Param("id") String id);
+	void update(Member member);
+	void delete(String id);
 }

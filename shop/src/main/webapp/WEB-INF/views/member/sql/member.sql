@@ -14,8 +14,8 @@ create table member(
     pwd varchar2(200)
 );
 
-insert into member values('kdy0802', '±èµÎ¿­', 'kdy0802@naver.com', '010-1234-1234', 'aaaa1111');
-insert into member values('qwe123', 'È«±æµ¿', 'ghdrlfehd@naver.com', '010-1234-1235', 'aaaa1112');
+insert into member values('kdy0802', '±èµÎ¿­', 'qwe@naver.com', '010-1234-1234', 'qwe');
+insert into member values('qwe123', 'È«±æµ¿', 'asd@naver.com', '010-1234-1235', 'qwe');
 
 commit;
 

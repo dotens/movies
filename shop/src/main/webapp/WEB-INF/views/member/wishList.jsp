@@ -3,7 +3,6 @@
 
 <font style="color:green">${member.name}</font>님 환영합니다.
 <a href="../member/logout">로그아웃</a>
-<input type="hidden" name="id" id="id" value="${member.id}">
 
 <!DOCTYPE html>
 <html>
@@ -24,31 +23,24 @@
 
 	<body style="text-align:center">
 		<center>
-			<h1>
-				대충만든거
-			</h1>
-			<a href='./list'>검색창</a><br/>
-			<form id="wishList">
+			<form id="wishList" method='post' action='deleteWish2'>
+			<input type="hidden" name="id" id="id" value="${member.id}">
 			<table border='1' cellpadding='7' cellspacing='2' width='50%'>
 			<tr>
-			<th>이름</th>
-			
-			<th>img</th>
+			<th>제목</th>
+			<th>WishList</th>
 			</tr>
 			
-			<c:if test="${empty list}">
+			<c:if test="${empty wishList}">
 				<tr>
-					<td align='center' colspan="5">데이터가 하나도 없음</td>
+					<td colspan='2' align='center'>데이터가 하나도 없음</td>
 				</tr>
 			</c:if>
 			
-			<c:forEach items="${list}" var="list">
+			<c:forEach items="${wishList}" var="wlist" varStatus="status">
 				<tr>
-				<td align='center'><a href ="essential?url=${list.url}" id="mname">${list.mname}</a>
-				</td>
-				
-				<td><img src=${list.img}></td>ㄷㄷ해 머선12구
-
+				<td align='center'>${wlist.mname}</td>
+				<td><button type="submit" type="button" name="mname" id="mname" value="${wlist.mname}">해제하기</button></td>
 				</tr>
 			</c:forEach>
 			</table>

@@ -9,6 +9,6 @@
 		location.href="login";
 	} else {
 		alert("로그인 성공");
-		location.href="../movie/list";
+		location.href="../";
 	}
 </script>

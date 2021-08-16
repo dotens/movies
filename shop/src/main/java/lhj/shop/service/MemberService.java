@@ -11,4 +11,6 @@ public interface MemberService {
 	int checkS(String id, String pwd);
 	int findPwdCheckS(@Param("id") String id, @Param("email") String email);
 	void setPwdS(@Param("pwd") String pwd, @Param("id") String id);
+	void updateS(Member member);
+	void deleteS(String id);
 }

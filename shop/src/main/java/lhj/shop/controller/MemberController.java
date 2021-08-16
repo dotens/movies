@@ -1,23 +1,28 @@
 package lhj.shop.controller;
 
-import static lhj.shop.domain.MemberConst.*;
-import static lhj.shop.domain.FindPwdConst.*;
+import static lhj.shop.domain.FindPwdConst.YES_ID_EMAIL;
+import static lhj.shop.domain.MemberConst.YES_ID_PWD;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import lhj.shop.domain.Member;
+import lhj.shop.domain.WishList;
 import lhj.shop.service.MemberService;
-import lombok.extern.java.Log;
+import lhj.shop.service.WishListService;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -26,6 +31,9 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private WishListService w_service;
 	
 	@ResponseBody
 	@PostMapping(value="overlap", produces={MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -99,6 +107,63 @@ public class MemberController {
 	public String logout(HttpServletRequest request, HttpSession session) {
 		session = request.getSession();
 		session.invalidate();
-		return "redirect:../movie/list";
+		return "redirect:../";
+	}
+	@GetMapping("info")
+	public ModelAndView info(String id) {
+		Member member = service.getMemberS(id);
+		ModelAndView mv = new ModelAndView("member/info", "member", member);
+		
+		return mv;
+	}
+	@GetMapping("update")
+	public ModelAndView update(String id) {
+		Member member = service.getMemberS(id);
+		ModelAndView mv = new ModelAndView("member/update", "member", member);
+		
+		return mv;
+	}
+	@PostMapping("update")
+	public String update(Member member) {
+		service.updateS(member);
+		return "redirect:../";
+	}
+	@GetMapping("delete")
+	public String delete(String id, HttpServletRequest request, HttpSession session) {
+		service.deleteS(id);
+		session = request.getSession();
+		session.invalidate();
+		
+		return "member/login";
+	}
+	//wishList
+	@ResponseBody
+	@PostMapping("insertWish")
+	public void insertWish(WishList wishList, HttpServletResponse response) {
+		w_service.insertWishS(wishList);
+	}
+	@ResponseBody
+	@GetMapping("deleteWish")
+	public void deleteWish(WishList wishList, HttpServletResponse response) {
+		w_service.deleteWishS(wishList);
+	}
+	@GetMapping("selectWish")
+	public ModelAndView selectWish(String id) {
+		List<WishList> wlist = w_service.selectWishS(id);
+		ModelAndView mv = new ModelAndView("member/wishList", "wishList", wlist);
+		log.info("mv: "+mv);
+		return mv;
+	}
+	@PostMapping("deleteWish2")
+	public String deleteWish2(HttpServletRequest request) {
+		String id = request.getParameter("id");
+		String mname = request.getParameter("mname");
+		WishList wishList = new WishList(id, mname);
+		w_service.deleteWishS(wishList);
+		return "redirect:selectWish?id="+id;
 	}
 }
+
+
+
+

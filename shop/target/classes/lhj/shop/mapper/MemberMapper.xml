@@ -12,4 +12,10 @@
 	<update id="setPwd" parameterType="String">
 	  update member set pwd=#{pwd} where id=#{id}
 	</update>
+	<update id="update" parameterType="Member">
+	  update member set email=#{email}, phone=#{phone}, pwd=#{pwd} where id=#{id}
+	</update>
+	<delete id="delete" parameterType="String">
+	  delete from member where id=#{id}
+	</delete>
   </mapper>
