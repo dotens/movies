@@ -57,16 +57,28 @@ public class MovieServiceimpl implements MovieService {
 				ImageIO.write(buffImg, "gif", file);
 			} catch (IOException ie) {
 			}
-			//https://movie-phinf.pstatic.net/20210512_139/1620799657168vGIqq_JPEG/movie_image.jpg?type=f67  ><
-			String mname = e.select("a>strong").text();
-			System.out.println(mname);
-		//	int idx = mnam.indexOf(" ");
-		//	String mname = mnam.substring(0,idx);
+			String mname = e.select("dl>dt>a").text();
 		    String url2 = e.select("a").attr("href");
 			String url = ("https://movie.naver.com"+url2);
 			
-			Movies movies = new Movies(mname,url,filename);
-			mapper.insertt(movies);
+			
+			if(filename != "") //img가 null이 아닐때 (네이버영화 검색 1페이지에 없는것들 제외)
+			{
+				String poster = null;
+				if(filename.indexOf("?") != -1) //이미지링크에 ? 가 있음 = 영화 전용 포스터가있음
+				{
+					int idx = filename.indexOf("?");
+					poster = filename.substring(0, idx); 
+
+				}
+				else // 영화전용 포스터대신 네이버 디폴트이미지일때
+				{
+					poster = "https://ssl.pstatic.net/static/movie/2011/06/poster_default.gif";
+				}
+				Movies movies = new Movies(mname,url,poster);
+				mapper.insertt(movies);
+			}
+			
 
 		}
 	}
@@ -191,24 +203,12 @@ public class MovieServiceimpl implements MovieService {
 		//String summry = elements.select("p.con_tx").text();
 		String starpoint = "9";
 		String urll = elements.select("div.end_btn_area>ul>li>a").attr("href");
-		String img  = elements.select("div.poster>a>img").attr("src");
+		String imgTemp  = elements.select("div.poster>a>img").attr("src");
 		Elements element = doc.select("div.score>div.score_result");
 		String review =  elements.select("li>div.score_reple>p").first().text();
-		/*for(Element k : element.select("li")){
-			
-		String qwe = element.select("div.score_reple>p").text();
 		
-		
-		}*/
-		
-		/*System.out.println("mname"+mname);
-		System.out.println("summry"+summry);
-		System.out.println("starpoint"+starpoint);
-		System.out.println("img"+img);
-		System.out.println("review"+review);
-		System.out.println("urll"+urll);
-		*/
-		
+		int idx = imgTemp.indexOf("?");
+		String img = imgTemp.substring(0, idx);
 
 		Movie movie = new Movie(mname,sum,starpoint,review,urll,img);
 		mapper.insertM(movie);	
@@ -240,25 +240,16 @@ public class MovieServiceimpl implements MovieService {
 		Elements elements = doc.select("div.wrap-movie-detail");
 		
 		String mname = elements.select("div.box-contents>div.title>strong").first().text();	
-		String summry = "asdasd";
+		String summry = elements.select("div.sect-story-movie>p").text();
 		String starpoin = elements.select("div.box-contents>div.score>div.egg-gage.small>span.percent").text();
 		String starpoint = ("golden egg :"+starpoin);
 		String urll = elements.select("div.end_btn_area>ul>li>a").attr("href");
 		String img  = elements.select("div.box-image>a").attr("href");
 		Elements element = doc.select("div.sect-grade");
-		System.out.println("element :"+element);
 		String review = element.select("div>wrap-persongrade>ul.point_col2>li.screen_spoiler>div.box-comment>p").text();
-		System.out.println("mname"+mname);
-		System.out.println("summry"+summry);
-		
-		System.out.println("urll"+urll);
-		System.out.println("img"+img);
-		
-		System.out.println("starpoint"+starpoint);
-		System.out.println("review"+review);
 
-//		Movie movie = new Movie(mname,summry,starpoint,review,urll,img);
-//		mapper.insertM(movie);
+		Movie movie = new Movie(mname,summry,starpoint,review,urll,img);
+		mapper.insertM(movie);
 		
 	}
 
