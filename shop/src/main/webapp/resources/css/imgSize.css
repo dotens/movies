@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+
+#mainPoster{
+	image-rendering: -webkit-optimize-contrast;
+	transform: translateZ(0);
+	backface-visibility: hidden;
+	width: 300px;
+    height: 400px;
+}
