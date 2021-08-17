@@ -1,0 +1,1 @@
+create table ranking (mname varchar2(2000), cno number(10) default 1)
