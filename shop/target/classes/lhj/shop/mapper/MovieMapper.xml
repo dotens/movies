@@ -2,34 +2,49 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="lhj.shop.mapper.MovieMapper">
-<insert id="insertM">
-	insert into movie values(#{mname},#{summary},#{starpoint},#{review},#{URL},#{IMG})	
-</insert>
-<insert id="insertt"  parameterType="Movies">
-	insert into movies values(#{mname},#{url},#{img})
-</insert>
+<mapper namespace="lhj.shop.mapper.MovieMapper">
+	<insert id="insertM">
+		insert into movie values(#{mname},#{summary},#{starpoint},#{review},#{URL},#{IMG})
+	</insert>
+	<insert id="insertt" parameterType="Movies">
+		insert into movies values(#{mname},#{url},#{img})
+	</insert>
+	<insert id="insertR" parameterType = "Ranking">
+		insert into RANKING(mname) values(#{mname})
+	</insert>
+	<select id="selectR" resultType = "Ranking">
+		<![CDATA[
+			select * from (select * from RANKING order by cno) where rownum <5
+		]]>
+	</select>
+	<update id="updateR" parameterType = "Ranking">
+		<![CDATA[
+			update RANKING set CNO = CNO+1 where MNAME = #{mname}
+		]]>
+	</update>
+	<select id="selectR2" parameterType = "Ranking" resultType="Ranking">
+		select * from ranking where mname = #{mname}
+	</select>
+	<select id="list" resultType="Movies">
+		select * from Movies
+	</select>
+	<delete id="delete">
+		delete from Movies
+	</delete>
+	<select id="listm" resultType="lhj.shop.domain.Movie">
+		select * from Movie
+	</select>
+	<delete id="deletem">
+		delete from movie
+	</delete>
 <insert id="insertRelate">
 	insert into relate values(#{rtitle},#{rimg}, #{rurl})
 </insert>
 <select id="relate" resultType="lhj.shop.domain.Relate">
 	select * from relate
 </select>
-<select id="list" resultType="Movies">
-	    select * from Movies
-</select>
-
-<delete id="delete">
- 	delete from Movies
-</delete>
 <delete id="deleteRelate">
  	delete from Relate
-</delete>
-<select id="listm" resultType="lhj.shop.domain.Movie">
-	    select * from Movie
-</select>
-<delete id="deletem">
-	delete from movie
 </delete>
 </mapper>
   

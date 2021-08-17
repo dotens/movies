@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,20 +21,21 @@ import org.springframework.stereotype.Service;
 
 import lhj.shop.domain.Movie;
 import lhj.shop.domain.Movies;
+import lhj.shop.domain.Ranking;
 import lhj.shop.domain.Relate;
 import lhj.shop.mapper.MovieMapper;
 import lombok.AllArgsConstructor;
 
 @Service
 public class MovieServiceimpl implements MovieService {
-	
+
 	@Inject
 	private MovieMapper mapper;
-	
+
 	@Override
 	 public void insertt(String url1) { //네이버검색결과
 		String path = "C:\\sprin\\upload\\tmp\\movie\\";
-		
+
 		Document doc = null;
 		try {
 			doc= Jsoup.connect(url1).get();
@@ -42,18 +44,18 @@ public class MovieServiceimpl implements MovieService {
 		}
 		Elements elements = doc.select("ul.search_list_1");
 
-		for(Element e : elements.select("li")) {
+		for (Element e : elements.select("li")) {
 			String img = e.select("img").attr("src");
 			String filename =img.trim();
 			HttpURLConnection conn = null;
 			URL imgUrl;
 			try {
 				imgUrl = new URL(img);
-				conn=(HttpURLConnection)imgUrl.openConnection();
+				conn = (HttpURLConnection) imgUrl.openConnection();
 				BufferedImage buffImg = ImageIO.read(conn.getInputStream());
-				FileOutputStream file = new FileOutputStream(path+filename);
-				ImageIO.write(buffImg,"gif",file);
-			}catch(IOException ie) {
+				FileOutputStream file = new FileOutputStream(path + filename);
+				ImageIO.write(buffImg, "gif", file);
+			} catch (IOException ie) {
 			}
 			//https://movie-phinf.pstatic.net/20210512_139/1620799657168vGIqq_JPEG/movie_image.jpg?type=f67  ><
 			String mname = e.select("a>strong").text();
@@ -65,14 +67,15 @@ public class MovieServiceimpl implements MovieService {
 			
 			Movies movies = new Movies(mname,url,filename);
 			mapper.insertt(movies);
-			
-			}	
+
+		}
 	}
+
 	@Override
 	public void insertd(String url1) { //cgv 검색결과
 		//System.out.println("insertd: " + url1);
 		String path = "C:\\sprin\\upload\\tmp\\movie\\";
-		
+
 		Document doc = null;
 		try {
 			doc= Jsoup.connect(url1).get();		
@@ -119,11 +122,11 @@ public class MovieServiceimpl implements MovieService {
 			URL imgUrl;
 			try {
 				imgUrl = new URL(img);
-				conn=(HttpURLConnection)imgUrl.openConnection();
+				conn = (HttpURLConnection) imgUrl.openConnection();
 				BufferedImage buffImg = ImageIO.read(conn.getInputStream());
-				FileOutputStream file = new FileOutputStream(path+filename);
-				ImageIO.write(buffImg,"gif",file);
-			}catch(IOException ie) {
+				FileOutputStream file = new FileOutputStream(path + filename);
+				ImageIO.write(buffImg, "gif", file);
+			} catch (IOException ie) {
 			}
 			
 			String mname = e.select("div.box-contents>a>strong").first().text();
@@ -140,17 +143,18 @@ public class MovieServiceimpl implements MovieService {
 	
 		}*/
 	}
+
 	@Override
 	public List<Movies> list() {
 		return mapper.list();
-		 
+
 	}
 
 
 	@Override
 	public void delete() {
-			mapper.delete();
-		
+		mapper.delete();
+
 	}
 	public void deleteRelate() {
 		mapper.deleteRelate();
@@ -159,7 +163,7 @@ public class MovieServiceimpl implements MovieService {
 	@Override
 	public void rein(String url) { //네이버 검색 상세
 		String path = "C:\\sprin\\upload\\tmp\\movie\\";
-		
+
 		Document doc = null;
 		try {
 			doc= Jsoup.connect(url).get();
@@ -209,6 +213,7 @@ public class MovieServiceimpl implements MovieService {
 		Movie movie = new Movie(mname,sum,starpoint,review,urll,img);
 		mapper.insertM(movie);	
 	}
+
 	@Override
 	public void reinc(String url) { //cgv 검색 상세
 		String path = "C:\\sprin\\upload\\tmp\\movie\\";
@@ -256,24 +261,44 @@ public class MovieServiceimpl implements MovieService {
 //		mapper.insertM(movie);
 		
 	}
+
 	@Override
 	public List<Movie> listm() {
 		return mapper.listm();
-		 
+
 	}
+
 	@Override
 	public void deletem() {
 		mapper.deletem();
 		
 	}
-
-	
 	public List<Relate> relate() {
 		return mapper.relate();
 		 
 	}
 	
+	@Override
+	public Ranking selectR2(Ranking ranking) {
+		return mapper.selectR2(ranking);}
+	
+	@Override
+	public List<Ranking> selectR(){
+		return mapper.selectR();
+	}
+	
+	@Override
+	public void insertR(Ranking ranking) {
+		mapper.insertR(ranking);
+	}
+	
+	@Override
+	public void updateR(Ranking ranking) {
+		mapper.updateR(ranking);
+	}
 }
+	
+
 	/*
 	  public void insertt(String url1) {
 		List<Movies> list = new ArrayList<Movies>();
@@ -293,13 +318,22 @@ public class MovieServiceimpl implements MovieService {
 		String url = ("https://movie.naver.com"+url2);
 		Movies movies = new Movies(mname,url);
 	
-		
-		mapper.insertt(movies);
-		}
-	}*/
+
+/*
 	
 
-	
-	 
-
-
+ * public void insertt(String url1) { List<Movies> list = new
+ * ArrayList<Movies>(); Document doc = null; try { doc=
+ * Jsoup.connect(url1).get(); }catch(IOException ie) {
+ * System.out.println("io발생 " +ie); } Elements elements =
+ * doc.select("ul.search_list_1");
+ * 
+ * for(Element e : elements.select("li")) {
+ * 
+ * String mname = e.text(); //첫 스페이스에서 이름 자르기 필요 String url2 =
+ * e.select("a").attr("href"); String url = ("https://movie.naver.com"+url2);
+ * Movies movies = new Movies(mname,url);
+ * 
+ * 
+ * mapper.insertt(movies); } }
+ */

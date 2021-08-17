@@ -10,10 +10,7 @@
 			hj's move controller		
 		</h1>
 	    <p>
-	    <a href="movie/list">검색창</a><br/>
-	    
-	    
-	   
+	    <a href="movie/list">검색창</a><br/>	   
 	    </p>
 	</body>
 </html><!--asddsasddddddd  -->

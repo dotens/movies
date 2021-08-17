@@ -1,7 +1,5 @@
 package lhj.shop.domain;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,11 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Movie {
+public class Ranking {
 	private String mname;
-	private String summary;
-	private String starpoint;
-	private String review;
-	private String URL;
-	private String IMG;
+	private int cno;
 }
