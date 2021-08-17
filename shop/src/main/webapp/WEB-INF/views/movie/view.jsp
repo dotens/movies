@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
@@ -33,7 +34,7 @@ $(function() {
 <!DOCTYPE html>
 <html>
 	<head>
-	<link rel="stylesheet" href="/resources/css/imgSize.css">
+	<link rel="stylesheet" href="/css/imgSize.css">
 
 
 
@@ -59,7 +60,7 @@ $(function() {
 			<a href='list'>메인으로</a><br/>
 		<table border='1' cellpadding='7' cellspacing='2' width='50%'>
 			<tr>
-			<th>이름</th>
+			<th id=test >이름</th>
 			<th>줄거리</th>
 			<th>별점</th>
 			<th>리뷰</th>
@@ -79,11 +80,10 @@ $(function() {
 				<td id=summary>${list.summary}</td>
 				<td>${list.starpoint}</td>
 				<td>${list.review}</td>
-				<td>${list.URL}</td>
-				<td><img src=${list.IMG}></td>
-				<td><button style="width:80px; height:40px" type="button" id="btn1" value="${list.mname}">추가하기</button></td>
 				<td><a href =${list.URL}>예매사이트로</a></td>
 				<td><img id=mainPoster src=${list.IMG} ></td>
+				<td><button style="width:80px; height:40px" type="button" id="btn1" value="${list.mname}">추가하기</button></td>
+
 				
 				
 								</tr>
