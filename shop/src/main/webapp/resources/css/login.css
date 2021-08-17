@@ -1,0 +1,12 @@
+#btn3 {
+  width: 140px;
+  height: 35px;
+  font-size:12px;
+  font-family: 'Nanum Gothic';
+  color: white;
+  line-height: 25px;
+  text-align: center;
+  background: #0080ff;
+  border: solid 2px grey;
+  border-radius: 12px;
+}
