@@ -37,5 +37,14 @@
 	<delete id="deletem">
 		delete from movie
 	</delete>
+<insert id="insertRelate">
+	insert into relate values(#{rtitle},#{rimg}, #{rurl})
+</insert>
+<select id="relate" resultType="lhj.shop.domain.Relate">
+	select * from relate
+</select>
+<delete id="deleteRelate">
+ 	delete from Relate
+</delete>
 </mapper>
   

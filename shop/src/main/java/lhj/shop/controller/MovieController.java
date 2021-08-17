@@ -1,5 +1,6 @@
 package lhj.shop.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import lhj.shop.domain.Movie;
 import lhj.shop.domain.Movies;
 import lhj.shop.domain.Ranking;
+import lhj.shop.domain.Relate;
 import lhj.shop.service.MovieServiceimpl;
 import lhj.shop.service.ShopServiceimpl;
 import lombok.Setter;
@@ -23,7 +25,8 @@ import lombok.extern.log4j.Log4j;
 public class MovieController {
 	@Setter(onMethod_ = @Autowired)
 	private MovieServiceimpl service;
-
+	
+	
 	@RequestMapping("list")
 	public String list() {
 		return "movie/list";
@@ -67,20 +70,25 @@ public class MovieController {
 	@RequestMapping("essential")
 	public ModelAndView essential(String url) {
 		service.deletem();
+		service.deleteRelate();
 		int idx = url.indexOf(":");
-		String curl = url.substring(0, idx);
-		System.out.println(curl);
-		if (curl.equals("https")) {
+		String curl= url.substring(0,idx);
+		if(curl.equals("https")){
 			service.rein(url);
 		} else if (curl.equals("http")) {
 			service.reinc(url);
 
 		}
-
-		List<Movie> list = service.listm();
-		System.out.println(list);
-
-		ModelAndView mv = new ModelAndView("movie/view", "list", list);
+		
+		List<Movie>list =service.listm(); //선택한 영화에대한 상세정보 DB가 담긴 modelandview
+		List<Relate> relate = service.relate(); //선택한 영화에 대한 연관영화목록들 DB가 담긴 modelandview
+		
+		
+		ArrayList<Object> list3 = new ArrayList<Object>();
+		
+		list3.add(list);
+		list3.add(relate);
+		ModelAndView mv = new ModelAndView("movie/view","a",list3);
 		return mv;
 	}
 
