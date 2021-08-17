@@ -4,6 +4,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<link rel="stylesheet" href="/resources/css/imgSize.css">
+
+
+
 		<meta charset="utf-8">
 		<title>Title</title>
 		<style>
@@ -42,11 +46,11 @@
 			 <c:forEach items="${a[0]}" var="list" begin="0" end="1">
 				<tr>
 				<td align='center'>${list.mname}</td>
-				<td>${list.summary}</td>
+				<td id=summary>${list.summary}</td>
 				<td>${list.starpoint}</td>
 				<td>${list.review}</td>
 				<td><a href =${list.URL}>예매사이트로</a></td>
-				<td><img src=${list.IMG} ></td>
+				<td><img id=mainPoster src=${list.IMG} ></td>
 				
 				</tr>
 			</c:forEach>

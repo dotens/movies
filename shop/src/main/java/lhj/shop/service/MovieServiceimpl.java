@@ -44,7 +44,6 @@ public class MovieServiceimpl implements MovieService {
 
 		for(Element e : elements.select("li")) {
 			String img = e.select("img").attr("src");
-			System.out.println("insertt 이미지는?"+img);
 			String filename =img.trim();
 			HttpURLConnection conn = null;
 			URL imgUrl;
@@ -172,7 +171,6 @@ public class MovieServiceimpl implements MovieService {
 			String r = e.select("a").attr("href");
 			String rimg = imgt.trim();
 			String rurl = ("https://movie.naver.com"+r);
-			System.out.println("RURL: " + rurl);
 			Relate relate = new Relate(rtitle,rimg,rurl);
 			mapper.insertRelate(relate);
 		}
@@ -198,7 +196,7 @@ public class MovieServiceimpl implements MovieService {
 	}
 	@Override
 	public void reinc(String url) { //cgv 검색 상세
-String path = "C:\\sprin\\upload\\tmp\\movie\\";
+		String path = "C:\\sprin\\upload\\tmp\\movie\\";
 		
 		Document doc = null;
 		try {
@@ -255,7 +253,7 @@ String path = "C:\\sprin\\upload\\tmp\\movie\\";
 		 
 	}
 	
-	}
+}
 	/*
 	  public void insertt(String url1) {
 		List<Movies> list = new ArrayList<Movies>();

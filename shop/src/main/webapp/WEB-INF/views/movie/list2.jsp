@@ -42,7 +42,7 @@
 				<td align='center'><a href ="essential?url=${list.url}">${list.mname}</a>
 				</td>
 				
-				<td align='center'><a href ="essential?url=${list.url}"><img src=${list.img}></a></td>ㄷㄷ해 머선12구
+				<td align='center'><a href ="essential?url=${list.url}"><img src=${list.img}></a></td>
 				
 				</tr>
 			</c:forEach>
