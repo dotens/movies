@@ -18,6 +18,7 @@
 <select id="list" resultType="Movies">
 	    select * from Movies
 </select>
+
 <delete id="delete">
  	delete from Movies
 </delete>

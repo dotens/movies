@@ -102,7 +102,6 @@ public class MovieServiceimpl implements MovieService {
 			}catch(IOException ie) {
 			}
 			Movies movies = new Movies(cname,curl,cimgurl);
-			System.out.println("CNAME: "+cname+", CURL:"+curl+", CIMGURL: "+cimgurl);
 			
 			mapper.insertt(movies);
 		}
@@ -207,6 +206,19 @@ String path = "C:\\sprin\\upload\\tmp\\movie\\";
 		}catch(IOException ie) {
 			System.out.println("reinc io발생 " +ie);
 		}
+		
+		Elements e2 = doc.select("div.sect-movielist>ul");
+		for(Element e : e2.select("li"))
+		{
+			String r = e.select("div.box-image>a").attr("href");
+			String rurl = ("http://cgv.co.kr"+r).trim();
+			String rtitle = e.select("div.box-contents>a>strong").text();
+			String rimg = e.select("div.box-image>a>span>img").attr("src").trim();
+
+			Relate relate = new Relate(rtitle,rimg,rurl);
+			mapper.insertRelate(relate);
+		}
+		
 		Elements elements = doc.select("div.wrap-movie-detail");
 		
 		String mname = elements.select("div.title").first().text();	

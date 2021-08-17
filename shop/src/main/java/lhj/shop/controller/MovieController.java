@@ -37,8 +37,6 @@ public class MovieController {
 		service.delete();
 	String catgo=request.getParameter("catgo");
 	String mname=request.getParameter("mname");
-	System.out.println("MovieController: "+catgo);
-	System.out.println("MovieController: "+mname);
 		switch(catgo) {
 	 	case  "NAVER":  
 		url1 = ("https://movie.naver.com/movie/search/result.naver?query="+mname+"&section=all&ie=utf8");
@@ -65,7 +63,6 @@ public class MovieController {
 		service.deleteRelate();
 		int idx = url.indexOf(":");
 		String curl= url.substring(0,idx);
-		System.out.println("essential: " + curl);
 		if(curl.equals("https")){
 			service.rein(url);
 		}else if(curl.equals("http")) {
