@@ -22,8 +22,6 @@
 		  </c:otherwise>
 		</c:choose><br/>
 	    <a href="movie/list">검색창</a><br/>
-	    <a href="movie/list">검색창</a><br/>
- 
 	    </p>
 	</body>
-</html>
+</html><!--asddsasddddddd  -->
