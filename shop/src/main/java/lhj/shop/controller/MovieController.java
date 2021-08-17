@@ -41,13 +41,15 @@ public class MovieController {
 				service.insertt(url1); break;
 	 	case "CGV":
 	 	url1 = ("http://www.cgv.co.kr/search/movie.aspx?query="+mname); 
+	 	
 	 			service.insertd(url1); break;
 		}
+				//디비에 정보가 저장되여
 		
 		 
 		
 		
-		List<Movies>list = service.list();
+		List<Movies>list = service.list();//여기서 게시판으로 뿌져주는거
 		ModelAndView mv = new ModelAndView("movie/list2","list",list);
 		
 		
