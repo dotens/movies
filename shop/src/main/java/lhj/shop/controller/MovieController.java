@@ -46,7 +46,7 @@ public class MovieController {
 	 			service.insertd(url1); break;
 		}
 		
-		 
+		System.out.println("asdfafsd");
 		
 		
 		List<Movies>list = service.list();
