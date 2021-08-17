@@ -56,9 +56,11 @@ public class MovieServiceimpl implements MovieService {
 			}catch(IOException ie) {
 			}
 			//https://movie-phinf.pstatic.net/20210512_139/1620799657168vGIqq_JPEG/movie_image.jpg?type=f67  ><
-			String mname = e.text();
-			//첫 스페이스에서 이름 자르기 필요
-			String url2 = e.select("a").attr("href");
+			String mname = e.select("a>strong").text();
+			System.out.println(mname);
+		//	int idx = mnam.indexOf(" ");
+		//	String mname = mnam.substring(0,idx);
+		    String url2 = e.select("a").attr("href");
 			String url = ("https://movie.naver.com"+url2);
 			
 			Movies movies = new Movies(mname,url,filename);
@@ -108,6 +110,8 @@ public class MovieServiceimpl implements MovieService {
 		/*Elements elements = doc.select("ul");
 		for(Element e : elements.select("li")) 
 		{	
+		Elements elements = doc.select("div.sect-chart");	
+		for(Element e : elements.select("li")) {	
 			String img = e.select("span.thumb-image").attr("src");
 			//System.out.println("insertd 이미지는?"+img);
 			String filename =img.trim();
@@ -121,9 +125,11 @@ public class MovieServiceimpl implements MovieService {
 				ImageIO.write(buffImg,"gif",file);
 			}catch(IOException ie) {
 			}
-			//https://movie-phinf.pstatic.net/20210512_139/1620799657168vGIqq_JPEG/movie_image.jpg?type=f67  ><
-			String mname = e.select("strong.title").text();
-			//첫 스페이스에서 이름 자르기 필요
+			
+			String mname = e.select("div.box-contents>a>strong").first().text();
+			
+			//int idx = mnam.indexOf(" ");
+		//	String mname = mnam.substring(0,idx);
 			String url2 = e.select("div.box-image>a").attr("href");
 			//System.out.println("insertd url2"+url2);
 			String url = ("http://www.cgv.co.kr"+url2);
@@ -180,15 +186,24 @@ public class MovieServiceimpl implements MovieService {
 		String mname = elements.select("h3.h_movie").first().text();	
 		//String summry = elements.select("p.con_tx").text();
 		String starpoint = "9";
-		String review = "asd";
 		String urll = elements.select("div.end_btn_area>ul>li>a").attr("href");
-		String img  = elements.select("div.poster>img").attr("src");
+		String img  = elements.select("div.poster>a>img").attr("src");
+		Elements element = doc.select("div.score>div.score_result");
+		String review =  elements.select("li>div.score_reple>p").first().text();
+		/*for(Element k : element.select("li")){
+			
+		String qwe = element.select("div.score_reple>p").text();
+		
+		
+		}*/
+		
 		/*System.out.println("mname"+mname);
 		System.out.println("summry"+summry);
 		System.out.println("starpoint"+starpoint);
+		System.out.println("img"+img);
 		System.out.println("review"+review);
 		System.out.println("urll"+urll);
-		System.out.println("img"+img);*/
+		*/
 		
 
 		Movie movie = new Movie(mname,sum,starpoint,review,urll,img);
@@ -219,22 +234,26 @@ public class MovieServiceimpl implements MovieService {
 		
 		Elements elements = doc.select("div.wrap-movie-detail");
 		
-		String mname = elements.select("div.title").first().text();	
-		String summry = elements.select("div.sect-story-movie").text();
-		String starpoint = "9";
-		String review = "asd";
+		String mname = elements.select("div.box-contents>div.title>strong").first().text();	
+		String summry = "asdasd";
+		String starpoin = elements.select("div.box-contents>div.score>div.egg-gage.small>span.percent").text();
+		String starpoint = ("golden egg :"+starpoin);
 		String urll = elements.select("div.end_btn_area>ul>li>a").attr("href");
 		String img  = elements.select("div.box-image>a").attr("href");
-		/*System.out.println("mname"+mname);
+		Elements element = doc.select("div.sect-grade");
+		System.out.println("element :"+element);
+		String review = element.select("div>wrap-persongrade>ul.point_col2>li.screen_spoiler>div.box-comment>p").text();
+		System.out.println("mname"+mname);
 		System.out.println("summry"+summry);
+		
+		System.out.println("urll"+urll);
+		System.out.println("img"+img);
+		
 		System.out.println("starpoint"+starpoint);
 		System.out.println("review"+review);
-		System.out.println("urll"+urll);
-		System.out.println("img"+img);*/
-		
-		
-		Movie movie = new Movie(mname,summry,starpoint,review,urll,img);
-		mapper.insertM(movie);
+
+//		Movie movie = new Movie(mname,summry,starpoint,review,urll,img);
+//		mapper.insertM(movie);
 		
 	}
 	@Override
@@ -247,6 +266,7 @@ public class MovieServiceimpl implements MovieService {
 		mapper.deletem();
 		
 	}
+
 	
 	public List<Relate> relate() {
 		return mapper.relate();

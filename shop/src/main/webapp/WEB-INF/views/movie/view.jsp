@@ -52,7 +52,8 @@
 				<td><a href =${list.URL}>예매사이트로</a></td>
 				<td><img id=mainPoster src=${list.IMG} ></td>
 				
-				</tr>
+				
+								</tr>
 			</c:forEach>
 			
 		</table>
