@@ -278,7 +278,27 @@ public class MovieServiceimpl implements MovieService {
 		 
 	}
 	
+	@Override
+	public Ranking selectR2(Ranking ranking) {
+		return mapper.selectR2(ranking);}
+	
+	@Override
+	public List<Ranking> selectR(){
+		return mapper.selectR();
+	}
+	
+	@Override
+	public void insertR(Ranking ranking) {
+		mapper.insertR(ranking);
+	}
+	
+	@Override
+	public void updateR(Ranking ranking) {
+		mapper.updateR(ranking);
+	}
 }
+	
+
 	/*
 	  public void insertt(String url1) {
 		List<Movies> list = new ArrayList<Movies>();
@@ -298,26 +318,10 @@ public class MovieServiceimpl implements MovieService {
 		String url = ("https://movie.naver.com"+url2);
 		Movies movies = new Movies(mname,url);
 	
-	@Override
-	public List<Ranking> selectR(){
-		return mapper.selectR();
-	}
-	
-	@Override
-	public void insertR(Ranking ranking) {
-		mapper.insertR(ranking);
-	}
-	
-	@Override
-	public void updateR(Ranking ranking) {
-		mapper.updateR(ranking);
-	}
 
-	@Override
-	public Ranking selectR2(Ranking ranking) {
-		return mapper.selectR2(ranking);}
-}
 /*
+	
+
  * public void insertt(String url1) { List<Movies> list = new
  * ArrayList<Movies>(); Document doc = null; try { doc=
  * Jsoup.connect(url1).get(); }catch(IOException ie) {
