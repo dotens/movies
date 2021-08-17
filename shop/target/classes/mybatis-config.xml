@@ -6,6 +6,8 @@
 <typeAliases>
 	<typeAlias alias="Shop" type="lhj.shop.domain.Shop"/>
 	<typeAlias alias="Movies" type="lhj.shop.domain.Movies"/>
+	
+	
 </typeAliases>
 
 <!-- 
