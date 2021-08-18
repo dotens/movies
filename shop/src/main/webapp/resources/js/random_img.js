@@ -1,0 +1,26 @@
+var bg = new Array();
+bg[bg.length] = '../resources/img/bgimg/bg1.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg2.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg3.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg4.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg5.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg6.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg7.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg8.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg9.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg10.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg11.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg12.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg13.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg14.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg15.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg16.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg17.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg18.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg19.jpg';
+bg[bg.length] = '../resources/img/bgimg/bg20.jpg';
+
+var obj = document.getElementById('background');
+var size = Math.floor(Math.random()*(bg.length));
+j = (isNaN(size)) ? 0 : size;
+obj.style.backgroundImage = 'url('+ bg[size] + ')';

@@ -215,43 +215,48 @@ public class MovieServiceimpl implements MovieService {
 	}
 
 	@Override
-	public void reinc(String url) { //cgv 검색 상세
-		String path = "C:\\sprin\\upload\\tmp\\movie\\";
-		
-		Document doc = null;
-		try {
-			doc= Jsoup.connect(url).get();
-		}catch(IOException ie) {
-			System.out.println("reinc io발생 " +ie);
-		}
-		
-		Elements e2 = doc.select("div.sect-movielist>ul");
-		for(Element e : e2.select("li"))
-		{
-			String r = e.select("div.box-image>a").attr("href");
-			String rurl = ("http://cgv.co.kr"+r).trim();
-			String rtitle = e.select("div.box-contents>a>strong").text();
-			String rimg = e.select("div.box-image>a>span>img").attr("src").trim();
+	   public void reinc(String url) { //cgv 검색 상세
+	      String path = "C:\\sprin\\upload\\tmp\\movie\\";
+	      
+	      Document doc = null;
+	      try {
+	         doc= Jsoup.connect(url).get();
+	      }catch(IOException ie) {
+	         System.out.println("reinc io발생 " +ie);
+	      }
+	      
+	      Elements e2 = doc.select("div.sect-movielist>ul");
+	      for(Element e : e2.select("li"))
+	      {
+	         String r = e.select("div.box-image>a").attr("href");
+	         String rurl = ("http://cgv.co.kr"+r).trim();
+	         String rtitle = e.select("div.box-contents>a>strong").text();
+	         String rimg = e.select("div.box-image>a>span>img").attr("src").trim();
 
-			Relate relate = new Relate(rtitle,rimg,rurl);
-			mapper.insertRelate(relate);
-		}
-		
-		Elements elements = doc.select("div.wrap-movie-detail");
-		
-		String mname = elements.select("div.box-contents>div.title>strong").first().text();	
-		String summry = elements.select("div.sect-story-movie>p").text();
-		String starpoin = elements.select("div.box-contents>div.score>div.egg-gage.small>span.percent").text();
-		String starpoint = ("golden egg :"+starpoin);
-		String urll = elements.select("div.end_btn_area>ul>li>a").attr("href");
-		String img  = elements.select("div.box-image>a").attr("href");
-		Elements element = doc.select("div.sect-grade");
-		String review = element.select("div>wrap-persongrade>ul.point_col2>li.screen_spoiler>div.box-comment>p").text();
-
-		Movie movie = new Movie(mname,summry,starpoint,review,urll,img);
-		mapper.insertM(movie);
-		
-	}
+	         Relate relate = new Relate(rtitle,rimg,rurl);
+	         mapper.insertRelate(relate);
+	      }
+	      
+	      Elements elements = doc.select("div.wrap-movie-detail");
+	      
+	      String mname = elements.select("div.box-contents>div.title>strong").first().text();   
+	      String summry = elements.select("div.sect-story-movie").text();
+	      String summr = elements.select("div.sect-story-movie>p").text();
+	      String starpoin = elements.select("div.box-contents>div.score>div.egg-gage.small>span.percent").text();
+	      String starpoint = ("golden egg :"+starpoin);
+	      String urll = elements.select("div.end_btn_area>ul>li>a").attr("href");
+	      String img  = elements.select("div.box-image>a").attr("href");
+	      Elements element = doc.select("div.sect-grade");
+	      String review = element.select("div>wrap-persongrade>ul.point_col2>li.screen_spoiler>div.box-comment>p").text();
+	         if(summry.equals("")) {
+	            Movie movie = new Movie(mname,summr,starpoint,review,urll,img);
+	      mapper.insertM(movie);
+	         }else {
+	            Movie movie = new Movie(mname,summry,starpoint,review,urll,img);
+	            mapper.insertM(movie);
+	         }
+	      
+	   }
 
 	@Override
 	public List<Movie> listm() {

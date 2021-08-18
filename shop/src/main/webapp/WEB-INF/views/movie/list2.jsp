@@ -1,12 +1,38 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<font style="color:green">${member.name}</font>님 환영합니다.
-<a href="../member/logout">로그아웃</a>
-<input type="hidden" name="id" id="id" value="${member.id}">
+
 
 <!DOCTYPE html>
 <html>
+	<script language = "javascript">
+		var imgArray = new Array();
+		imgArray[0] = "../resources/img/bgimg/bg1.jpg";
+		imgArray[1] = "../resources/img/bgimg/bg2.jpg";
+		imgArray[2] = "../resources/img/bgimg/bg3.jpg";
+		imgArray[3] = "../resources/img/bgimg/bg4.jpg";
+		imgArray[4] = "../resources/img/bgimg/bg5.jpg";
+		imgArray[5] = "../resources/img/bgimg/bg6.jpg";
+		imgArray[6] = "../resources/img/bgimg/bg7.jpg";
+		imgArray[7] = "../resources/img/bgimg/bg8.jpg";
+		imgArray[8] = "../resources/img/bgimg/bg9.jpg";
+		imgArray[9] = "../resources/img/bgimg/bg10.jpg";
+		imgArray[10] = "../resources/img/bgimg/bg11.jpg";
+		imgArray[11] = "../resources/img/bgimg/bg12.jpg";
+		imgArray[12] = "../resources/img/bgimg/bg13.jpg";
+		imgArray[13] = "../resources/img/bgimg/bg14.jpg";
+		imgArray[14] = "../resources/img/bgimg/bg15.jpg";
+		imgArray[15] = "../resources/img/bgimg/bg16.jpg";
+		imgArray[16] = "../resources/img/bgimg/bg17.jpg";
+		imgArray[17] = "../resources/img/bgimg/bg18.jpg";
+		imgArray[18] = "../resources/img/bgimg/bg19.jpg";
+		imgArray[19] = "../resources/img/bgimg/bg20.jpg";
+		function showImage(){
+			var imgNum = Math.round(Math.random()*20);
+			var objImg = document.getElementById("backimg");
+			objImg.src = imgArray[imgNum];
+		}
+	</script>
 	<head>
 	        <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
             <link rel="stylesheet" href="../resources/css/owl.carousel.min.css">
@@ -32,65 +58,93 @@
 			   padding: 5px;
 			}
 			a { text-decoration:none }
-			.favourite-place{
-			    width: 100vw;
-			    height: 100vh;
-			    background: url("../resources/img/back.jpg");
-			    background-size: 100% 100%;
-    			background-position: center;
-    			
+			#backimg {
+			  position:fixed;
+			  margin: auto; 
+			  top: 0%; 
+			  left: 00%; 
+			  width: 100%; 
+			  height: 100%;
+			  opacity:0.6;
+			  background-repeat: no-repeat;
+			  background-size: cover;
+			  background-position: center;
+			  
 			}
-			.favourite-place::before{
-	        content: "";
-	        opacity: 0.1;
-	        position: absolute;
-	        top: 0px;
-	        left: 0px;
-	        right: 0px;
-	        bottom: 0px;
-	        background-color: #fff;
-	    }
+			p 
+		    {
+		        margin: 5px;
+		        padding: 5px 0px;
+		        text-align: center;
+		        text-transform: uppercase;
+		        font-family: "Arial Black", sans-serif;
+		        font-size: 25px;
+		        font-weight: bold;
+		    }
+			.p 
+			{
+	      	   
+	     	   color: #ffede6;
+	     	   text-shadow: 2px 8px 6px rgba(0,0,0,1), 
+	     	   				0px -3px 20px rgba(0,0,0,1);
+	        }
 
 
-출처: https://ddorang-d.tistory.com/89 [도라미도라미]
 		</style>
 		
 	</head>
 
 	<body style="text-align:center">
+
 		<center>
-			<a href='./list' style="color:black" >검색창으로</a><br/>
+
+			
 			<form id="wishList">
 			<table border='1' cellpadding='7' cellspacing='2' width='50%'>
-        <div class="favourite-place">
-            <div class="container">
-                <!-- Section Tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle text-center">
-                            <span>입력된 단어로 검색된 영화입니다</span>
-                            <h2>검색결과</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                <c:forEach items="${list}" var="list">
-                     <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-place mb-30">
-                            <div class="place-img">
-                                <a href ="essential?url=${list.url}"><img src=${list.img}></a>
-                            </div>
-                            <div class="place-cap">
-                                <div class="place-cap-top">
-                                    <h3><a href ="essential?url=${list.url}" id="mname">${list.mname}</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-				</c:forEach>
+
+	<div id="background">
+		<img id = "backimg">
+		</div>
+		
+		<script type="text/javascript">
+			showImage('background');
+		</script>
+			<img id = "introImg" border="0">
+
+	        <div class="favourite-place">
+	            <div class="container">
+	                <!-- Section Tittle -->
+	                <div class="row">
+	                    <div class="col-lg-12">
+	                        <div class="section-tittle text-center">
+	                        	<font style="color:green">${member.name}</font>님 환영합니다.
+								<a href="../member/logout">로그아웃</a>
+								<input type="hidden" name="id" id="id" value="${member.id}">
+	                            <span>입력된 단어로 검색된 영화입니다</span>
+	                            <h2>검색결과</h2>
+	                            <a href='./list' style="color:black" >검색창으로</a><br/>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="row">
+	                <c:forEach items="${list}" var="list">
+	                     <div class="col-xl-4 col-lg-4 col-md-6">
+	                        <div class="single-place mb-30">
+	                            <div class="place-img">
+	                                <a href ="essential?url=${list.url}"><img src=${list.img}></a>
+	                            </div>
+	                            <div class="place-cap">
+	                                <div class="place-cap-top">
+	                                
+	                                    <h3><a href ="essential?url=${list.url}" id="mname"><p class="p">${list.mname}</p></a></h3>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
-	</div>
 			<c:if test="${empty list}">
 				<tr>
 					<td align='center' colspan="5">검색된 결과가 없습니다</td>
@@ -102,5 +156,6 @@
 			</form>
 			<a href='./list' style="color:black" >검색창으로</a><br/>
 		</center>
+
 	</body>
 </html>
