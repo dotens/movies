@@ -77,7 +77,7 @@
 		        padding: 5px 0px;
 		        text-align: center;
 		        text-transform: uppercase;
-		        font-family: "Arial Black", sans-serif;
+		        font-family: "맑은 고딕", sans-serif;
 		        font-size: 25px;
 		        font-weight: bold;
 		    }
@@ -85,7 +85,7 @@
 			{
 	      	   
 	     	   color: #ffede6;
-	     	   text-shadow: 2px 8px 6px rgba(0,0,0,1), 
+	     	   text-shadow: 2px 1px 6px rgba(0,0,0,1), 
 	     	   				0px -3px 20px rgba(0,0,0,1);
 	        }
 
@@ -117,12 +117,13 @@
 	                <div class="row">
 	                    <div class="col-lg-12">
 	                        <div class="section-tittle text-center">
-	                        	<font style="color:green">${member.name}</font>님 환영합니다.
-								<a href="../member/logout">로그아웃</a>
+	                        	<font style="color:green"><p class="p">${member.name}님 환영합니다.</p></font>
+								<a href="../member/logout"><p class="p">로그아웃</p></a>
 								<input type="hidden" name="id" id="id" value="${member.id}">
-	                            <span>입력된 단어로 검색된 영화입니다</span>
-	                            <h2>검색결과</h2>
-	                            <a href='./list' style="color:black" >검색창으로</a><br/>
+								<h2><p class="p">검색결과</p></h2>
+	                            <span><p class="p">입력된 단어로 검색된 영화입니다</p></span>
+
+	                            <a href='./list' style="color:black" ><p class="p">검색창으로</p></a><br/>
 	                        </div>
 	                    </div>
 	                </div>
@@ -148,13 +149,14 @@
 			<c:if test="${empty list}">
 				<tr>
 					<td align='center' colspan="5">검색된 결과가 없습니다</td>
+					<a href='..	/list' style="color:black" ><p class="p">검색창으로</p></a><br/>
 				</tr>
 				
 			</c:if>
 			
 			</table>
 			</form>
-			<a href='./list' style="color:black" >검색창으로</a><br/>
+			
 		</center>
 
 	</body>
