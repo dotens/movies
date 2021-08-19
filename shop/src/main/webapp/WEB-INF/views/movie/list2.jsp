@@ -95,7 +95,7 @@
 	</head>
 
 	<body style="text-align:center">
-
+	
 		<center>
 
 			
@@ -105,7 +105,7 @@
 	<div id="background">
 		<img id = "backimg">
 		</div>
-		
+		<a style="display:scroll;position:fixed;bottom:65px;right:65px;" href="#" title=”맨 위로"><img src="../resources/img/arrowup.png"></a> 
 		<script type="text/javascript">
 			showImage('background');
 		</script>
@@ -120,7 +120,6 @@
 	                        	<font style="color:green"><p class="p">${member.name}님 환영합니다.</p></font>
 								<a href="../member/logout"><p class="p">로그아웃</p></a>
 								<input type="hidden" name="id" id="id" value="${member.id}">
-								<h2><p class="p">검색결과</p></h2>
 	                            <span><p class="p">입력된 단어로 검색된 영화입니다</p></span>
 
 	                            <a href='./list' style="color:black" ><p class="p">검색창으로</p></a><br/>
