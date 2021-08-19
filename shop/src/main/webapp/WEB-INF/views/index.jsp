@@ -12,37 +12,37 @@
 		<link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico">
 
 		<!-- CSS here -->
-            <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
-            <link rel="stylesheet" href="/assets/css/flaticon.css">
-            <link rel="stylesheet" href="/assets/css/slicknav.css">
-            <link rel="stylesheet" href="/assets/css/animate.min.css">
-            <link rel="stylesheet" href="/assets/css/magnific-popup.css">
-            <link rel="stylesheet" href="/assets/css/fontawesome-all.min.css">
-            <link rel="stylesheet" href="/assets/css/themify-icons.css">
-            <link rel="stylesheet" href="/assets/css/slick.css">
-            <link rel="stylesheet" href="/assets/css/nice-select.css">
-            <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="/assets/css/flaticon.css">
+        <link rel="stylesheet" href="/assets/css/slicknav.css">
+        <link rel="stylesheet" href="/assets/css/animate.min.css">
+        <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="/assets/css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="/assets/css/themify-icons.css">
+        <link rel="stylesheet" href="/assets/css/slick.css">
+        <link rel="stylesheet" href="/assets/css/nice-select.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
             
-			<style>
-			.button {
-			  position: relative;
-			  bottom: 3px;
-			  background-color: #fffc33;
-			  border: none;
-			  border-radius: 5px;
-			  width: 180px;
-			  height: 55px;
-			  color: black;
-			  padding: 15px 15px;
-			  text-align: center;
-			  text-decoration: none;
-			  display: inline-block;
-			  font-size: 12px;
-			  margin: 4px 4px;
-			  cursor: pointer;
-			}
-			</style>
+		<style>
+		.button {
+		  position: relative;
+		  bottom: 3px;
+		  background-color: #fffc33;
+		  border: none;
+		  border-radius: 5px;
+		  width: 180px;
+		  height: 55px;
+		  color: black;
+		  padding: 15px 15px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 12px;
+		  margin: 4px 4px;
+		  cursor: pointer;
+		}
+		</style>
    </head>
    <body>
     <!-- Preloader Start -->
