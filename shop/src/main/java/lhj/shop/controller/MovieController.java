@@ -91,5 +91,12 @@ public class MovieController {
 		ModelAndView mv = new ModelAndView("movie/view","a",list3);
 		return mv;
 	}
+	
+	@RequestMapping("r2")
+	public ModelAndView RankingT() {
+		List<Ranking> listR = service.selectR();
+		ModelAndView mv = new ModelAndView("movie/r2", "listR", listR);
+		return mv;
+	}
 
 }

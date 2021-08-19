@@ -14,7 +14,7 @@
 	</insert>
 	<select id="selectR" resultType = "Ranking">
 		<![CDATA[
-			select * from (select * from RANKING order by cno) where rownum <5
+			select * from (select * from RANKING order by cno) where rownum <5 order by cno desc
 		]]>
 	</select>
 	<update id="updateR" parameterType = "Ranking">
