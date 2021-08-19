@@ -62,6 +62,7 @@ public class MovieController {
 		System.out.println("listR () : " +listR);
 		List<Movies> list = service.list();
 		ModelAndView mv = new ModelAndView("movie/list2", "list", list);
+		mv.addObject("listR", listR);
 
 		return mv;
 
@@ -80,8 +81,8 @@ public class MovieController {
 
 	      }
 	      
-	      List<Movie>list =service.listm(); //¼±ÅÃÇÑ ¿µÈ­¿¡´ëÇÑ »ó¼¼Á¤º¸ DB°¡ ´ã±ä modelandview
-	      List<Relate> relate = service.relate(); //¼±ÅÃÇÑ ¿µÈ­¿¡ ´ëÇÑ ¿¬°ü¿µÈ­¸ñ·Ïµé DB°¡ ´ã±ä modelandview
+	      List<Movie>list =service.listm(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DBï¿½ï¿½ ï¿½ï¿½ï¿½ modelandview
+	      List<Relate> relate = service.relate(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½Ïµï¿½ DBï¿½ï¿½ ï¿½ï¿½ï¿½ modelandview
 	      
 	      ModelAndView mv = new ModelAndView("movie/view","mlist",list);
 	      mv.addObject("relate", relate);

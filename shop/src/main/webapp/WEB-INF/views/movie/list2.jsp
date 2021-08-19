@@ -218,8 +218,38 @@
          </c:if>
          
          </table>
-         </form>
          
+         </form>
+         <div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-8">
+							<div class="card">
+								<div class="card-header">
+									<b>실시간 검색 순위</b>
+								</div>
+								<div class="card-body">
+									<table class="table table-hover" id="dev-table">
+										<thead>
+											<tr>
+												<th align='left'><b>Movie Name</b></th>
+												<th align='left'><b>Views</b></th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${listR}" var="ranking" varStatus="status">
+												<tr>
+													<td align='left'><b>${ranking.mname}</b></td>
+													<td align='left'><b>${ranking.cno}</b></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
       </center>
           <!-- JS here -->
    
