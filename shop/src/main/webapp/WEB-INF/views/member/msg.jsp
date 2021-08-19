@@ -8,7 +8,6 @@
 		alert("비밀번호가 일치하지 않습니다.");
 		location.href="login";
 	} else {
-		alert("로그인 성공");
 		location.href="../";
 	}
 </script>

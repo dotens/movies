@@ -126,7 +126,7 @@ public class MemberController {
 	@PostMapping("update")
 	public String update(Member member) {
 		service.updateS(member);
-		return "redirect:../";
+		return "member/info";
 	}
 	@GetMapping("delete")
 	public String delete(String id, HttpServletRequest request, HttpSession session) {
@@ -134,7 +134,7 @@ public class MemberController {
 		session = request.getSession();
 		session.invalidate();
 		
-		return "member/login";
+		return "redirect:../";
 	}
 	//wishList
 	@ResponseBody
