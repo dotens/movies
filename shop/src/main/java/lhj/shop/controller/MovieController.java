@@ -68,28 +68,30 @@ public class MovieController {
 	}
 
 	@RequestMapping("essential")
-	public ModelAndView essential(String url) {
-		service.deletem();
-		service.deleteRelate();
-		int idx = url.indexOf(":");
-		String curl= url.substring(0,idx);
-		if(curl.equals("https")){
-			service.rein(url);
-		} else if (curl.equals("http")) {
-			service.reinc(url);
+	   public ModelAndView essential(String url) {
+	      service.deletem();
+	      service.deleteRelate();
+	      int idx = url.indexOf(":");
+	      String curl= url.substring(0,idx);
+	      if(curl.equals("https")){
+	         service.rein(url);
+	      } else if (curl.equals("http")) {
+	         service.reinc(url);
 
-		}
-		
-		List<Movie>list =service.listm(); //ì„ íƒí•œ ì˜í™”ì—ëŒ€í•œ ìƒì„¸ì •ë³´ DBê°€ ë‹´ê¸´ modelandview
-		List<Relate> relate = service.relate(); //ì„ íƒí•œ ì˜í™”ì— ëŒ€í•œ ì—°ê´€ì˜í™”ëª©ë¡ë“¤ DBê°€ ë‹´ê¸´ modelandview
-		
-		
-		ArrayList<Object> list3 = new ArrayList<Object>();
-		
-		list3.add(list);
-		list3.add(relate);
-		ModelAndView mv = new ModelAndView("movie/view","a",list3);
-		return mv;
-	}
+	      }
+	      
+	      List<Movie>list =service.listm(); //¼±ÅÃÇÑ ¿µÈ­¿¡´ëÇÑ »ó¼¼Á¤º¸ DB°¡ ´ã±ä modelandview
+	      List<Relate> relate = service.relate(); //¼±ÅÃÇÑ ¿µÈ­¿¡ ´ëÇÑ ¿¬°ü¿µÈ­¸ñ·Ïµé DB°¡ ´ã±ä modelandview
+	      
+	      ModelAndView mv = new ModelAndView("movie/view","mlist",list);
+	      mv.addObject("relate", relate);
+	      System.out.println("RELATE: " + relate);
+	      //   ArrayList<Object> list3 = new ArrayList<Object>();
+	      
+	      //   list3.add(list);
+	      //list3.add(relate);
+	      //ModelAndView mv = new ModelAndView("movie/view","a",list3);
+	      return mv;
+	   }
 
 }

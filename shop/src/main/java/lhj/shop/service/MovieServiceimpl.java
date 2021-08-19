@@ -33,14 +33,14 @@ public class MovieServiceimpl implements MovieService {
 	private MovieMapper mapper;
 
 	@Override
-	 public void insertt(String url1) { //네이버검색결과
+	 public void insertt(String url1) { //�꽕�씠踰꾧��깋寃곌낵
 		String path = "C:\\sprin\\upload\\tmp\\movie\\";
 
 		Document doc = null;
 		try {
 			doc= Jsoup.connect(url1).get();
 		}catch(IOException ie) {
-			System.out.println("insertt: io발생 " +ie);
+			System.out.println("insertt: io諛쒖깮 " +ie);
 		}
 		Elements elements = doc.select("ul.search_list_1");
 
@@ -62,16 +62,16 @@ public class MovieServiceimpl implements MovieService {
 			String url = ("https://movie.naver.com"+url2);
 			
 			
-			if(filename != "") //img가 null이 아닐때 (네이버영화 검색 1페이지에 없는것들 제외)
+			if(filename != "") //img媛� null�씠 �븘�땺�븣 (�꽕�씠踰꾩쁺�솕 寃��깋 1�럹�씠吏��뿉 �뾾�뒗寃껊뱾 �젣�쇅)
 			{
 				String poster = null;
-				if(filename.indexOf("?") != -1) //이미지링크에 ? 가 있음 = 영화 전용 포스터가있음
+				if(filename.indexOf("?") != -1) //�씠誘몄�留곹겕�뿉 ? 媛� �엳�쓬 = �쁺�솕 �쟾�슜 �룷�뒪�꽣媛��엳�쓬
 				{
 					int idx = filename.indexOf("?");
 					poster = filename.substring(0, idx); 
 
 				}
-				else // 영화전용 포스터대신 네이버 디폴트이미지일때
+				else // �쁺�솕�쟾�슜 �룷�뒪�꽣���떊 �꽕�씠踰� �뵒�뤃�듃�씠誘몄��씪�븣
 				{
 					poster = "https://ssl.pstatic.net/static/movie/2011/06/poster_default.gif";
 				}
@@ -84,7 +84,7 @@ public class MovieServiceimpl implements MovieService {
 	}
 
 	@Override
-	public void insertd(String url1) { //cgv 검색결과
+	public void insertd(String url1) { //cgv 寃��깋寃곌낵
 		//System.out.println("insertd: " + url1);
 		String path = "C:\\sprin\\upload\\tmp\\movie\\";
 
@@ -92,7 +92,7 @@ public class MovieServiceimpl implements MovieService {
 		try {
 			doc= Jsoup.connect(url1).get();		
 		}catch(IOException ie) {
-			System.out.println("insertd io발생 " +ie);
+			System.out.println("insertd io諛쒖깮 " +ie);
 		}
 
 		
@@ -103,7 +103,7 @@ public class MovieServiceimpl implements MovieService {
 			String curlt = e2.select("div.box-contents>a").attr("href").trim();
 			String cname = e2.select("div.box-contents>a>strong.title").text();
 			String cimgurl = e2.select("div.box-image>a>span>img").attr("src").trim();
-			//첫 스페이스에서 이름 자르기 필요
+			//泥� �뒪�럹�씠�뒪�뿉�꽌 �씠由� �옄瑜닿린 �븘�슂
 			//System.out.println("insertd url2"+url2);
 			String curl = ("http://www.cgv.co.kr"+curlt);
 			String filename = curlt;
@@ -128,7 +128,7 @@ public class MovieServiceimpl implements MovieService {
 		Elements elements = doc.select("div.sect-chart");	
 		for(Element e : elements.select("li")) {	
 			String img = e.select("span.thumb-image").attr("src");
-			//System.out.println("insertd 이미지는?"+img);
+			//System.out.println("insertd �씠誘몄��뒗?"+img);
 			String filename =img.trim();
 			HttpURLConnection conn = null;
 			URL imgUrl;
@@ -173,14 +173,14 @@ public class MovieServiceimpl implements MovieService {
 	
 }
 	@Override
-	public void rein(String url) { //네이버 검색 상세
+	public void rein(String url) { //�꽕�씠踰� 寃��깋 �긽�꽭
 		String path = "C:\\sprin\\upload\\tmp\\movie\\";
 
 		Document doc = null;
 		try {
 			doc= Jsoup.connect(url).get();
 		}catch(IOException ie) {
-			System.out.println("rein io발생 " +ie);
+			System.out.println("rein io諛쒖깮 " +ie);
 		}
 		Elements elements = doc.select("div.article");
 		
@@ -196,7 +196,7 @@ public class MovieServiceimpl implements MovieService {
 			Relate relate = new Relate(rtitle,rimg,rurl);
 			mapper.insertRelate(relate);
 		}
-		Elements e3 = doc.select("div.story_area"); //줄거리가 시작되는부분만 따로지정해서 뽑았음
+		Elements e3 = doc.select("div.story_area"); //以꾧굅由ш� �떆�옉�릺�뒗遺�遺꾨쭔 �뵲濡쒖��젙�빐�꽌 戮묒븯�쓬
 		String sum = e3.select("p.con_tx").text();
 		
 		String mname = elements.select("h3.h_movie").first().text();	
@@ -205,7 +205,7 @@ public class MovieServiceimpl implements MovieService {
 		String urll = elements.select("div.end_btn_area>ul>li>a").attr("href");
 		String imgTemp  = elements.select("div.poster>a>img").attr("src");
 		Elements element = doc.select("div.score>div.score_result");
-		String review =  elements.select("li>div.score_reple>p").first().text();
+		String review =  "";
 		
 		int idx = imgTemp.indexOf("?");
 		String img = imgTemp.substring(0, idx);
@@ -215,14 +215,14 @@ public class MovieServiceimpl implements MovieService {
 	}
 
 	@Override
-	   public void reinc(String url) { //cgv 검색 상세
+	   public void reinc(String url) { //cgv 寃��깋 �긽�꽭
 	      String path = "C:\\sprin\\upload\\tmp\\movie\\";
 	      
 	      Document doc = null;
 	      try {
 	         doc= Jsoup.connect(url).get();
 	      }catch(IOException ie) {
-	         System.out.println("reinc io발생 " +ie);
+	         System.out.println("reinc io諛쒖깮 " +ie);
 	      }
 	      
 	      Elements e2 = doc.select("div.sect-movielist>ul");
@@ -232,9 +232,10 @@ public class MovieServiceimpl implements MovieService {
 	         String rurl = ("http://cgv.co.kr"+r).trim();
 	         String rtitle = e.select("div.box-contents>a>strong").text();
 	         String rimg = e.select("div.box-image>a>span>img").attr("src").trim();
-
+	         
 	         Relate relate = new Relate(rtitle,rimg,rurl);
 	         mapper.insertRelate(relate);
+	         
 	      }
 	      
 	      Elements elements = doc.select("div.wrap-movie-detail");
@@ -302,14 +303,14 @@ public class MovieServiceimpl implements MovieService {
 		try {
 			doc= Jsoup.connect(url1).get();
 		}catch(IOException ie) {
-			System.out.println("io발생 " +ie);
+			System.out.println("io諛쒖깮 " +ie);
 		}
 		Elements elements = doc.select("ul.search_list_1");
 
 		for(Element e : elements.select("li")) {
 
 		String mname = e.text();
-		//첫 스페이스에서 이름 자르기 필요
+		//泥� �뒪�럹�씠�뒪�뿉�꽌 �씠由� �옄瑜닿린 �븘�슂
 		String url2 = e.select("a").attr("href");
 		String url = ("https://movie.naver.com"+url2);
 		Movies movies = new Movies(mname,url);
@@ -321,12 +322,12 @@ public class MovieServiceimpl implements MovieService {
  * public void insertt(String url1) { List<Movies> list = new
  * ArrayList<Movies>(); Document doc = null; try { doc=
  * Jsoup.connect(url1).get(); }catch(IOException ie) {
- * System.out.println("io발생 " +ie); } Elements elements =
+ * System.out.println("io諛쒖깮 " +ie); } Elements elements =
  * doc.select("ul.search_list_1");
  * 
  * for(Element e : elements.select("li")) {
  * 
- * String mname = e.text(); //첫 스페이스에서 이름 자르기 필요 String url2 =
+ * String mname = e.text(); //泥� �뒪�럹�씠�뒪�뿉�꽌 �씠由� �옄瑜닿린 �븘�슂 String url2 =
  * e.select("a").attr("href"); String url = ("https://movie.naver.com"+url2);
  * Movies movies = new Movies(mname,url);
  * 
